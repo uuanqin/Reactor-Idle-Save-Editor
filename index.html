@@ -11,6 +11,8 @@
   <script src="js/i18n.js"></script>
   <!-- 引入外部CSS样式文件 -->
   <link rel="stylesheet" href="style/style.css">
+  <link rel="icon" href="img/logo.png" type="image/png">
+
 </head>
 
 <body>
@@ -41,7 +43,7 @@
       <h2 data-i18n="decompressTitle"></h2>
       <div class="input-area">
         <input type="file" id="decompress-file" accept=".txt,.base64,.json">
-        <textarea id="decompress-input" placeholder=""></textarea>
+        <textarea id="decompress-input" data-i18n="decompressPlaceholder" placeholder=""></textarea>
       </div>
       <div class="btn-group">
         <button data-i18n="decompressBtn" class="primary" id="decompress-btn"></button>
