@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reactor Idle Save Editor</title>
+  <!-- 引入LZString核心库 -->
+  <script src="js/lz-string.min.js"></script>
+  <!-- 引入多语言配置 -->
+  <script src="js/i18n.js"></script>
+  <!-- 引入外部CSS样式文件 -->
+  <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+  <!-- 新增：语言切换按钮 -->
+  <div class="language-switcher">
+    <button id="lang-zh" class="lang-btn active">中文</button>
+    <button id="lang-en" class="lang-btn">English</button>
+  </div>
+
+  <div class="container">
+    <h1 data-i18n="title"></h1>
+    <img src="img/logo.png" alt="Reactor Icon" class="header-image">
+    <p class="subtitle" data-i18n="subtitle"></p>
+
+    <!-- 新增：工具使用说明 -->
+    <div class="usage-guide">
+      <h3 data-i18n="usageTitle"></h3>
+      <ol>
+        <li data-i18n="usage1"></li>
+        <li data-i18n="usage2"></li>
+        <li data-i18n="usage3"></li>
+        <li data-i18n="usage4"></li>
+      </ol>
+    </div>
+
+    <!-- 解压功能区 -->
+    <div class="card" id="decompress-card">
+      <h2 data-i18n="decompressTitle"></h2>
+      <div class="input-area">
+        <input type="file" id="decompress-file" accept=".txt,.base64,.json">
+        <textarea id="decompress-input" placeholder=""></textarea>
+      </div>
+      <div class="btn-group">
+        <button data-i18n="decompressBtn" class="primary" id="decompress-btn"></button>
+      </div>
+      <div id="decompress-loading" class="loading hide" data-i18n="decompressLoading"></div>
+
+      <div class="result-display-container">
+        <div class="num-view-area">
+          <div class="num-item">
+            <label data-i18n="money"></label>
+            <div id="money-val" class="num-value">0.00</div>
+          </div>
+          <div class="num-item">
+            <label data-i18n="research"></label>
+            <div id="research-val" class="num-value">0.00</div>
+          </div>
+          <div class="num-item">
+            <label data-i18n="bonus"></label>
+            <div id="bonus-val" class="num-value">0.00</div>
+          </div>
+        </div>
+        <div id="decompress-result" class="result-area" data-i18n="decompressResult"></div>
+      </div>
+
+
+      <div class="btn-group">
+        <button data-i18n="copyDecompress" class="success" id="copy-decompress-btn" disabled></button>
+        <button data-i18n="saveDecompress" class="warning" id="save-decompress-btn" disabled></button>
+        <button data-i18n="clearDecompress" class="danger" id="clear-decompress-btn"></button>
+      </div>
+      <div id="decompress-tips" class="tips"></div>
+    </div>
+
+    <!-- 压缩功能区 -->
+    <div class="card" id="compress-card">
+      <h2 data-i18n="compressTitle"></h2>
+      <div class="file-sync-row">
+        <button data-i18n="syncBtn" class="warning" id="sync-btn"></button>
+        <input type="file" id="compress-file" accept=".txt,.json">
+      </div>
+
+      <!-- 存档解析功能区域 -->
+      <div class="result-display-container">
+        <!-- 左侧：数值编辑区 -->
+        <div class="num-edit-area">
+          <div class="stat-row">
+            <label data-i18n="money" class="stat-label"></label>
+            <div class="input-with-buttons">
+              <input type="number" id="money-input" class="num-input" step="1">
+            </div>
+          </div>
+          <div class="stat-row">
+            <label data-i18n="research" class="stat-label"></label>
+            <div class="input-with-buttons">
+              <input type="number" id="research-input" class="num-input" step="1">
+            </div>
+          </div>
+          <div class="stat-row">
+            <label data-i18n="bonus" class="stat-label"></label>
+            <div class="input-with-buttons">
+              <input type="number" id="bonus-input" class="num-input" step="1">
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧：JSON输入区 -->
+        <div class="json-input-container">
+
+          <div class="input-area">
+            <textarea data-i18n="compressPlaceholder" id="compress-input" placeholder=""></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- 其他压缩功能按钮区域 -->
+      <div class="btn-group">
+        <button data-i18n="compressBtn" class="primary" id="compress-btn"></button>
+      </div>
+      <div data-i18n="compressLoading" id="compress-loading" class="loading hide"></div>
+      <div id="compress-result" class="coded-result-area"></div>
+      <div class="btn-group">
+        <button data-i18n="copyCompress" class="success" id="copy-compress-btn" disabled></button>
+        <button data-i18n="saveCompress" class="warning" id="save-compress-btn" disabled></button>
+        <button data-i18n="clearCompress" class="danger" id="clear-compress-btn"></button>
+      </div>
+      <div id="compress-tips" class="tips"></div>
+    </div>
+  </div>
+
+  <!-- 引入外部JavaScript脚本文件 -->
+  <script src="js/script.js"></script>
+  <!-- 新增：全局提示弹窗 -->
+  <div data-i18n="copied" id="toast" class="toast hide"></div>
+
+  <!-- 新增：页脚 -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>©2026 <a href="https://uuanqin.top/" target="_blank">uuanqin</a> | <a
+          href="https://github.com/uuanqin/LZString-Tool" target="_blank">GitHub</a> | <span data-i18n="footer"></span>
+      </p>
+    </div>
+  </footer>
+</body>
+
+</html>
